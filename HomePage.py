@@ -5,17 +5,16 @@ from selenium.common.exceptions import NoSuchElementException
 
 class HomePageTest(unittest.TestCase):
 #this class is for testing google's homepage
-    @classmethod
-    def setUp(cls):
+    def setUp(self):
         # get the path of chromedriver
         dir = os.path.dirname(__file__)
         chrome_driver_path = dir + "\chromedriver.exe"
         # create a new Chrome session
-        cls.driver = webdriver.Chrome(chrome_driver_path)
-        cls.driver.implicitly_wait(30)
-        cls.driver.maximize_window()
+        self.driver = webdriver.Chrome(chrome_driver_path)
+        self.driver.implicitly_wait(30)
+        self.driver.maximize_window()
         # navigate to google's home page
-        cls.driver.get("http://www.google.com/")
+        self.driver.get("http://www.google.com/")
 
     def test_google_homepage_image(self):
         #check the existence of google's icon to check that we're in the correct page
@@ -56,9 +55,8 @@ class HomePageTest(unittest.TestCase):
         self.assertTrue(True)
 
 
-    @classmethod
-    def tearDownClass(cls):
+    def tearDown(self):
     #close browser windows
-     cls.driver.quit()
+     self.driver.quit()
 
 
