@@ -4,18 +4,16 @@ from selenium import webdriver
 
 
 class SearchTest(unittest.TestCase):
-    @classmethod
-    def setUp(cls):
+    def setUp(self):
         # get the path of chromedriver
         dir = os.path.dirname(__file__)
         chrome_driver_path = dir + "\chromedriver.exe"
-        # remove the .exe extension on linux or mac platform
         # create a new Chrome session
-        cls.driver = webdriver.Chrome(chrome_driver_path)
-        cls.driver.implicitly_wait(30)
-        cls.driver.maximize_window()
-        # navigate to the application home page
-        cls.driver.get("http://www.google.com/")
+        self.driver = webdriver.Chrome(chrome_driver_path)
+        self.driver.implicitly_wait(30)
+        self.driver.maximize_window()
+        # navigate to google's home page
+        self.driver.get("http://www.google.com/")
 
 
     def test_no_search_text(self):
@@ -61,9 +59,9 @@ class SearchTest(unittest.TestCase):
         self.assertTrue(str in suggestions_list)
 
 
-    @classmethod
-    def tearDownClass(cls):
+    
+    def tearDown(self):
     #closing browsers windows
-     cls.driver.quit()
+     self.driver.quit()
 
 
